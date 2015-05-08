@@ -4,21 +4,15 @@
 #include <sstream>
 #include <set>
 
-#include <unistd.h>
-#include <sys/types.h> 
-#include <sys/socket.h>
-#include <netinet/in.h>
-
+#include "socket.h"
+#include "command.h"
 #include "database.h"
 
 using namespace std;
 
 set<int> clients;
 
-bool read_socket(int socketfd, string &line);
-bool write_to_socket(int socketfd, string line);
 void* player(void* args);
-void broadcast(int originfd, string text);
 
 int main(int argc, char *argv[])
 {
@@ -63,47 +57,17 @@ int main(int argc, char *argv[])
 	return 0; 
 }
 
-bool read_socket(int socketfd, string &line) {
-	int n; 
-	char buffer[1025]; 
-	
-	line = "";
-
-	while (line.find('\n') == string::npos) {
-		int n = read(socketfd, buffer, 1024);
-		if (n == 0) return false;
-		buffer[n] = 0; 
-		line += buffer;
-	}
-	
-	line.erase(line.end() - 1);
-	line.erase(line.end() - 1);
-	return true;  
-}
-
-bool write_to_socket(int socketfd, string line) {
-	string tosend = line + "\n";
-	write(socketfd, tosend.c_str(), tosend.length());
-	
-	return true;
-}
-
 void* player(void* args) {
 	int sockfd = *(int*)args;
-	string line, command, arg1, arg2;
+	string line, command;
+	vector<string> c_args;
 	
-	clients.insert(sockfd);
 	cout << "Reading from socket " << sockfd << endl;
 	while (read_socket(sockfd, line)) {
 		cout << "Socket " << sockfd << " said: " << line << endl;
 		
-		istringstream iss(line);
-			
-		iss >> command >> arg1 >> arg2;
-		
-		PGresult* res = executeSQL("SELECT * FROM users WHERE uid = '" + arg1 + "' AND pass = '" + arg2 + "'");
-		for (int row = 0; row < PQntuples(res); row++)
-			cout << PQgetvalue(res, row, 0) << ' ' << PQgetvalue(res, row, 1) << endl;
+		command = split_command(line);
+		c_args = split_args(line);
 	}
 
 	cout << "Closing socket " << sockfd << endl;
@@ -113,13 +77,4 @@ void* player(void* args) {
 	close(sockfd);
 	
 	return NULL;
-}
-
-void broadcast (int origin, string text) {
-	ostringstream message;
-	message << origin << " said: " << text;
-
-	set<int>::iterator it;
-	for (it = clients.begin(); it != clients.end(); it++)
-	  if (*it != origin) write_to_socket(*it, message.str());
 }
