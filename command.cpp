@@ -21,3 +21,19 @@ vector<string> split_args(const string &s) {
 	}
 	return args;
 }
+
+void check_command(int socketfd, const string &s) {
+	if (s == "\\help") {
+		char help_line[256];
+		ifstream file_in("help.txt");
+		while (!file_in.eof()) {
+			file_in.getline(help_line, 255);
+			write_to_socket(socketfd, help_line);
+		}
+	} else {
+		string line = "Command not recognized. For help type \\help.";
+		write_to_socket(socketfd, line);
+	}
+	
+	return;
+}

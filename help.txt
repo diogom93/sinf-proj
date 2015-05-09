@@ -1,0 +1,22 @@
+Commands:
+
+\register <username> <password> - Register a given username with the specified password
+\identify <username> - Checks if a given name is already registered. If not, enters game as visitor
+\login <username> <password> - Enters game with given credentials
+
+\question <question>|<correct>|<wrong1>|<wrong2>|<wrong3> - Creates question and the given choices
+\create <period> <questions> - Creates a game with <period> seconds rounds and <questions> rounds
+\challenge <username> - Challenges a user to a game you created
+\accept <username> - Accepts challange made by a user
+\decline <username> - Decline challenge made by a user
+\start - Start a game you created
+
+\answer <alternative> - Selects answer to the question
+\ask - Ask the users for their answers
+\cut - Reduces number of alternatives
+
+\say <username>|<message> - Sends message to user
+\list - List all the questions
+\stats <question> - Presents statistics for a questions
+\modify <question_number>|<question>|<correct>|<wrong1>|<wrong2>|<wrong3>  - Modify a question
+\exit - Logout

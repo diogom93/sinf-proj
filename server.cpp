@@ -68,8 +68,10 @@ void* player(void* args) {
 		
 		command = split_command(line);
 		c_args = split_args(line);
+			
+		check_command(sockfd, command);	
 	}
-
+	
 	cout << "Closing socket " << sockfd << endl;
 	
 	clients.erase(sockfd);
