@@ -35,7 +35,6 @@ bool check_command(int socketfd, const string &s) {
 			file_in.getline(help_line, 255);
 			write_to_socket(socketfd, help_line);
 		}
-		
 	} else if (split_command(s) == "\\login") {
 		c_args = split_args(s, ' ');
 
@@ -52,7 +51,6 @@ bool check_command(int socketfd, const string &s) {
 				usernames[socketfd] = c_args[0];
 			}
 		}
-		
 	} else if (split_command(s) == "\\register") {
 		c_args = split_args(s, ' ');
 		
@@ -64,15 +62,18 @@ bool check_command(int socketfd, const string &s) {
 			if (PQntuples(res) != 0 ) {
 				write_to_socket(socketfd, "Sorry, that username is already taken.");
 			} else {
-				executeSQL("INSERT INTO users VALUES ('" + c_args[0] + "', '" + c_args[1] + "', false, NULL)");
+				PGresult* res = executeSQL("INSERT INTO users VALUES ('" + c_args[0] + "', '" + c_args[1] + "', false, NULL)");
 				
-				write_to_socket(socketfd, "Register successful! You are now logged in.");
-					
-				sockets[c_args[0]] = socketfd;
-				usernames[socketfd] = c_args[0];
+				if (res != NULL) {
+					write_to_socket(socketfd, "Register successful! You are now logged in.");
+						
+					sockets[c_args[0]] = socketfd;
+					usernames[socketfd] = c_args[0];
+				} else {
+					write_to_socket(socketfd, "Sorry, couldn't register you. Try limiting the username to 16 characters and avoiding any weird symbols.");
+				}
 			}
 		}
-		
 	} else if (split_command(s) == "\\identify") {
 		c_args = split_args(s, ' ');
 		
@@ -93,20 +94,26 @@ bool check_command(int socketfd, const string &s) {
 				write_to_socket(socketfd, "The user doesn't exist. Perhaps you want to \\register that username?");
 			}
 		}
-		
 	} else if (split_command(s) == "\\question") {
 		c_args = split_args(s, '|');
 		
-		map<int, string>::iterator it = usernames.find(socketfd);
-		
-		if (it == usernames.end()) {
-			write_to_socket(socketfd, "Sorry, only authenticated users can create questions. For more information type \\help.");
+		PGresult* res = executeSQL("SELECT uid FROM users WHERE uid = '" + usernames[socketfd] + "'");
+			
+		if (PQntuples(res) == 0) {
+			write_to_socket(socketfd, "Sorry, only registered users can create questions. For more information type \\help.");
 		} else {
 			if (c_args.size() < 5) {
 				write_to_socket(socketfd, "Oops, something's missing! For more information type \\help.");
-			} // Adicionar lógica
+			} else {
+				PGresult* res = executeSQL("INSERT INTO questions VALUES (DEFAULT, '" + c_args[0] + "', '" + c_args[1] + "', '" + c_args[2] + "', '" + c_args[3] + "', '" + c_args[4] + "', '" + usernames[socketfd] + "')");
+				
+				if (res != NULL) {
+					write_to_socket(socketfd, "Question added successfully!");
+				} else {
+					write_to_socket(socketfd, "Sorry, couldn't add the question. Maybe there were some weird symbols in the text?");
+				}
+			} 
 		}
-		
 	} else if (split_command(s) == "\\create") {
 		c_args = split_args(s, ' ');
 		
