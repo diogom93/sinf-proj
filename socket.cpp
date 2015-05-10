@@ -28,3 +28,11 @@ bool write_to_socket(int socketfd, string line) {
 	
 	return true;
 }
+
+void broadcast (int origin, string text) {
+	map<string, int>::iterator it;
+	for (it = sockets.begin(); it != sockets.end(); it++)
+	  if (it->second != origin) {
+		write_to_socket(it->second, usernames[origin] + " said: " + text);
+	}
+}

@@ -15,7 +15,9 @@ Commands:
 \ask - Ask the users for their answers
 \cut - Reduces number of alternatives
 
-\say <username>|<message> - Sends message to user
+\say <username>|<message> - Sends message to user. If no username is specified, the message is sent to all online users
+\info <username> - Presents the rank for the specified user
+\ranking - Lists all users by ranking order
 \list - List all the questions
 \stats <question> - Presents statistics for a questions
 \modify <question_number>|<question>|<correct>|<wrong1>|<wrong2>|<wrong3>  - Modify a question

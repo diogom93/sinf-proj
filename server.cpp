@@ -2,15 +2,12 @@
 #include <stdlib.h>	
 #include <string.h> 
 #include <sstream>
-#include <set>
 
 #include "socket.h"
 #include "command.h"
 #include "database.h"
 
 using namespace std;
-
-set<int> clients;
 
 void* player(void* args);
 
@@ -59,22 +56,18 @@ int main(int argc, char *argv[])
 
 void* player(void* args) {
 	int sockfd = *(int*)args;
-	string line, command;
-	vector<string> c_args;
+	string line;
 	
 	cout << "Reading from socket " << sockfd << endl;
 	while (read_socket(sockfd, line)) {
 		cout << "Socket " << sockfd << " said: " << line << endl;
 		
-		command = split_command(line);
-		c_args = split_args(line);
-			
-		check_command(sockfd, command);	
+		if (check_command(sockfd, line) == false) {
+			break;
+		}
 	}
 	
 	cout << "Closing socket " << sockfd << endl;
-	
-	clients.erase(sockfd);
 
 	close(sockfd);
 	
