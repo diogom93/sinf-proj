@@ -38,14 +38,19 @@ bool check_command(int socketfd, const string &s) {
 		
 	} else if (split_command(s) == "\\login") {
 		c_args = split_args(s, ' ');
-		
+
 		if (c_args.size() < 2) {
 			write_to_socket(socketfd, "Please specify username and password. For more information type \\help.");
 		} else {
-			// Adicionar lógica
+			PGresult* res = executeSQL("SELECT uid FROM users WHERE uid = '" + c_args[0] + "' AND pass = '" + c_args[1] + "'");
 			
-			sockets[c_args[0]] = socketfd;
-			usernames[socketfd] = c_args[0];
+			if (PQntuples(res) == 0) {
+				write_to_socket(socketfd, "Wrong username and/or password!");
+			} else {
+				write_to_socket(socketfd, "Login successful!");
+				sockets[c_args[0]] = socketfd;
+				usernames[socketfd] = c_args[0];
+			}
 		}
 		
 	} else if (split_command(s) == "\\register") {
@@ -53,14 +58,41 @@ bool check_command(int socketfd, const string &s) {
 		
 		if (c_args.size() < 2) {
 			write_to_socket(socketfd, "Please specify username and password. For more information type \\help.");
-		} // Adicionar lógica
+		} else {
+			PGresult* res = executeSQL("SELECT uid FROM users WHERE uid = '" + c_args[0] + "'");
+			
+			if (PQntuples(res) != 0 ) {
+				write_to_socket(socketfd, "Sorry, that username is already taken.");
+			} else {
+				executeSQL("INSERT INTO users VALUES ('" + c_args[0] + "', '" + c_args[1] + "', false, NULL)");
+				
+				write_to_socket(socketfd, "Register successful! You are now logged in.");
+					
+				sockets[c_args[0]] = socketfd;
+				usernames[socketfd] = c_args[0];
+			}
+		}
 		
 	} else if (split_command(s) == "\\identify") {
 		c_args = split_args(s, ' ');
 		
 		if (c_args.size() < 1) {
 			write_to_socket(socketfd, "Please specify username. For more information type \\help.");
-		} // Adicionar lógica
+		} else {
+			PGresult* res = executeSQL("SELECT uid FROM users WHERE uid = '" + c_args[0] + "'");
+			
+			if (PQntuples(res) != 0) {
+				map<int, string>::iterator it = usernames.find(sockets[c_args[0]]);
+				
+				if (it != usernames.end()) {
+					write_to_socket(socketfd, "The user exists and is online at the moment.");
+				} else {
+					write_to_socket(socketfd, "The user exists and is offline at the moment.");
+				}
+			} else {
+				write_to_socket(socketfd, "The user doesn't exist. Perhaps you want to \\register that username?");
+			}
+		}
 		
 	} else if (split_command(s) == "\\question") {
 		c_args = split_args(s, '|');

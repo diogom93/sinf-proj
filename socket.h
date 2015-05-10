@@ -17,6 +17,7 @@
 #include <netinet/in.h>
 
 #include "clients.h"
+#include "database.h"
 
 using namespace std;
 

@@ -3,9 +3,7 @@
 #include <string.h> 
 #include <sstream>
 
-#include "socket.h"
 #include "command.h"
-#include "database.h"
 
 using namespace std;
 
