@@ -7,6 +7,8 @@
 
 using namespace std;
 
+pthread_mutex_t durex = PTHREAD_MUTEX_INITIALIZER;
+
 void* player(void* args);
 
 int main(int argc, char *argv[])
@@ -60,11 +62,13 @@ void* player(void* args) {
 	while (read_socket(sockfd, line)) {
 		cout << "Socket " << sockfd << " said: " << line << endl;
 		
+		pthread_mutex_lock(&durex);
 		if (check_command(sockfd, line) == false) {
 			break;
 		}
+		pthread_mutex_unlock(&durex);
 	}
-	
+	pthread_mutex_unlock(&durex);
 	cout << "Closing socket " << sockfd << endl;
 
 	close(sockfd);

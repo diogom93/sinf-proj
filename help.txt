@@ -18,7 +18,7 @@ Commands:
 \say <username>|<message> - Sends message to user. If no username is specified, the message is sent to all online users
 \info <username> - Presents the rank for the specified user
 \ranking - Lists all users by ranking order
-\list - List all the questions
+\list - List all the questions created by the user
 \stats <question> - Presents statistics for a questions
 \modify <question_number>|<question>|<correct>|<wrong1>|<wrong2>|<wrong3>  - Modify a question
 \exit - Logout

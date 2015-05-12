@@ -41,14 +41,20 @@ bool check_command(int socketfd, const string &s) {
 		if (c_args.size() < 2) {
 			write_to_socket(socketfd, "Please specify username and password. For more information type \\help.");
 		} else {
-			PGresult* res = executeSQL("SELECT uid FROM users WHERE uid = '" + c_args[0] + "' AND pass = '" + c_args[1] + "'");
+			map<int, string>::iterator it = usernames.find(sockets[c_args[0]]);
 			
-			if (PQntuples(res) == 0) {
-				write_to_socket(socketfd, "Wrong username and/or password!");
+			if (it != usernames.end()) {
+				write_to_socket(socketfd, "This user is already logged in.");
 			} else {
-				write_to_socket(socketfd, "Login successful!");
-				sockets[c_args[0]] = socketfd;
-				usernames[socketfd] = c_args[0];
+				PGresult* res = executeSQL("SELECT uid FROM users WHERE uid = '" + c_args[0] + "' AND pass = '" + c_args[1] + "'");
+				
+				if (PQntuples(res) == 0) {
+					write_to_socket(socketfd, "Wrong username and/or password!");
+				} else {
+					write_to_socket(socketfd, "Login successful!");
+					sockets[c_args[0]] = socketfd;
+					usernames[socketfd] = c_args[0];
+				}
 			}
 		}
 	} else if (split_command(s) == "\\register") {
@@ -124,46 +130,41 @@ bool check_command(int socketfd, const string &s) {
 		} else {
 			if (c_args.size() < 2) {
 				write_to_socket(socketfd, "Please specify round time and number of rounds. For more information type \\help.");
-			} // Adicionar lógica
+			} else {
+				
+			}
+			// Adicionar lógica
 		}
-		
 	} else if (split_command(s) == "\\challenge") {
 		c_args = split_args(s, ' ');
 		
 		if (c_args.size() < 1) {
 			write_to_socket(socketfd, "Please specify username to challenge. For more information type \\help.");
 		} // Adicionar lógica
-		
 	} else if (split_command(s) == "\\accept") {
 		c_args = split_args(s, ' ');
 		
 		if (c_args.size() < 1) {
 			write_to_socket(socketfd, "Please specify username of challenger. For more information type \\help.");
 		} // Adicionar lógica
-		
 	} else if (split_command(s) == "\\decline") {
 		c_args = split_args(s, ' ');
 		
 		if (c_args.size() < 1) {
 			write_to_socket(socketfd, "Please specify username of challenger. For more information type \\help.");
 		} // Adicionar lógica
-		
 	} else if (split_command(s) == "\\start") {
 		// Adicionar lógica
-		
 	} else if (split_command(s) == "\\answer") {
 		c_args = split_args(s, ' ');
 		
 		if (c_args.size() < 1) {
 			write_to_socket(socketfd, "Please specify the alternative. For more information type \\help.");
 		} // Adicionar lógica
-		
 	} else if (split_command(s) == "\\ask") {
 		// Adicionar lógica
-		
 	} else if (split_command(s) == "\\cut") {
 		// Adicionar lógica
-		
 	} else if (split_command(s) == "\\say") {
 		c_args = split_args(s, '|');
 		
@@ -173,30 +174,52 @@ bool check_command(int socketfd, const string &s) {
 			write_to_socket(socketfd, "Sorry, only authenticated users can send messages. For more information type \\help.");
 		} else {
 			if (c_args.size() == 1) {
-				broadcast(socketfd, c_args[0]);
-			} else if (c_args.size() == 2){
-				write_to_socket(sockets[c_args[0]], usernames[socketfd] + " said: " + c_args[1]);
+				PGresult* res = executeSQL("INSERT INTO messages VALUES (DEFAULT, '" + usernames[socketfd] + "', NULL, '" + c_args[0] + "', NULL)");
+				
+				if (res == NULL) {
+					write_to_socket(socketfd, "Please avoid any weird symbols.");
+				} else {
+					broadcast(socketfd, c_args[0]);
+					write_to_socket(socketfd, "Message sent.");
+				}
+				
+			} else if (c_args.size() == 2) {
+				PGresult* res = executeSQL("INSERT INTO messages VALUES (DEFAULT, '" + usernames[socketfd] + "', '" + c_args[0] + "', '" + c_args[1] + "', NULL)");
+				
+				if (res == NULL) {
+					write_to_socket(socketfd, "Please avoid any weird symbols.");
+				} else {
+					write_to_socket(sockets[c_args[0]], usernames[socketfd] + " said: " + c_args[1]);
+					write_to_socket(socketfd, "Message sent.");
+				}
 			} else {
 				write_to_socket(socketfd, "Please specify message. For more information type \\help.");
 			}
 		}
-		
 	} else if (split_command(s) == "\\info") {
 		c_args = split_args(s, ' ');
 		
 		if (c_args.size() < 1) {
 			write_to_socket(socketfd, "Please specify username. For more information type \\help.");
 		} // Adicionar lógica
-		
 	} else if (split_command(s) == "\\list") {
 		map<int, string>::iterator it = usernames.find(socketfd);
 		
 		if (it == usernames.end()) {
 			write_to_socket(socketfd, "Sorry, only authenticated users can see the questions. For more information type \\help.");
 		} else {
+			PGresult* res = executeSQL("SELECT * FROM questions WHERE uid = '" + usernames[socketfd] + "'");
 			
-		} // Adicionar lógica
-		
+			if (PQntuples(res) == 0) {
+				write_to_socket(socketfd, "You havent created any questions.");
+			} else {
+				for (int row = 0; row < PQntuples(res); row++) { 
+					ostringstream line;
+					line << PQgetvalue(res, row, 0) << " - " << PQgetvalue(res, row, 1) << '|' << PQgetvalue(res, row, 2) << '|' << PQgetvalue(res, row, 3) << '|' << PQgetvalue(res, row, 4) << '|' << PQgetvalue(res, row, 5);
+					write_to_socket(socketfd, line.str());
+				}
+			}
+		}
 	} else if (split_command(s) == "\\stats") {
 		c_args = split_args(s, ' ');
 		
@@ -209,7 +232,6 @@ bool check_command(int socketfd, const string &s) {
 				write_to_socket(socketfd, "Please specify question number. For more information type \\help.");
 			} // Adicionar lógica
 		}
-		
 	} else if (split_command(s) == "\\modify") {
 		c_args = split_args(s, '|');
 		
@@ -222,7 +244,6 @@ bool check_command(int socketfd, const string &s) {
 				write_to_socket(socketfd, "Oops, something's missing! For more information type \\help.");
 			} // Adicionar lógica
 		}
-		
 	} else if (split_command(s) == "\\exit") { 
 		string username = usernames[socketfd] ;
 		
@@ -236,7 +257,6 @@ bool check_command(int socketfd, const string &s) {
 		usernames.erase(socketfd);
 		
 		return false;
-		
 	} else {
 		write_to_socket(socketfd, "Command not recognized. For help type \\help.");
 	}
