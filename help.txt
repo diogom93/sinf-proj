@@ -1,7 +1,7 @@
 Commands:
 
 \register <username> <password> - Register a given username with the specified password
-\identify <username> - Checks if a given name is already registered. If not, enters game as visitor
+\identify <username> - Checks if a given name is already registered. If no username is specified, lists online users.
 \login <username> <password> - Enters game with given credentials
 
 \question <question>|<correct>|<wrong1>|<wrong2>|<wrong3> - Creates question and the given choices
