@@ -21,4 +21,5 @@ Commands:
 \list - List all the questions created by the user
 \stats <question> - Presents statistics for a questions
 \modify <question_number>|<question>|<correct>|<wrong1>|<wrong2>|<wrong3>  - Modify a question
+\delete question <question_number> or game - Deletes a question you created or deletes an idle game
 \exit - Logout

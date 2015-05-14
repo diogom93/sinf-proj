@@ -27,6 +27,7 @@ vector<string> split_args(const string &s, char delim) {
 
 bool check_command(int socketfd, const string &s) {
 	vector<string> c_args;
+	string key = "key";
 	
 	if (split_command(s) == "\\help") {
 		char help_line[256];
@@ -43,11 +44,15 @@ bool check_command(int socketfd, const string &s) {
 			write_to_socket(socketfd, "Please specify username and password. For more information type \\help.");
 		} else {
 			map<int, string>::iterator it = usernames.find(sockets[c_args[0]]);
+			map<int, string>::iterator ti = usernames.find(socketfd);
+			string pass = XOR(c_args[1], key);
 			
 			if (it != usernames.end()) {
 				write_to_socket(socketfd, "This user is already logged in.");
+			} else if (ti != usernames.end()) {
+				write_to_socket(socketfd, "You are already logged in!");
 			} else {
-				PGresult* res = executeSQL("SELECT uid FROM users WHERE uid = '" + c_args[0] + "' AND pass = '" + c_args[1] + "'");
+				PGresult* res = executeSQL("SELECT uid FROM users WHERE uid = '" + c_args[0] + "' AND pass = '" + pass + "'");
 				
 				if (PQntuples(res) == 0) {
 					write_to_socket(socketfd, "Wrong username and/or password!");
@@ -55,6 +60,17 @@ bool check_command(int socketfd, const string &s) {
 					write_to_socket(socketfd, "Login successful!");
 					sockets[c_args[0]] = socketfd;
 					usernames[socketfd] = c_args[0];
+					
+					PGresult* res = executeSQL("SELECT * FROM messages WHERE state = 'PENDING' AND rcv = '" + c_args[0] + "'");
+					
+					for (int row = 0; row < PQntuples(res); row++) {
+						ostringstream line;
+						line << PQgetvalue(res, row, 1) << " said: " << PQgetvalue(res, row, 3);
+						write_to_socket(socketfd, line.str());
+						line << "";
+					}
+					
+					executeSQL("UPDATE messages SET state = 'SENT' WHERE state = 'PENDING' AND rcv = '" + c_args[0] + "'");
 				}
 			}
 		}
@@ -66,17 +82,23 @@ bool check_command(int socketfd, const string &s) {
 			write_to_socket(socketfd, "Please specify username and password. For more information type \\help.");
 		} else {
 			PGresult* res = executeSQL("SELECT uid FROM users WHERE uid = '" + c_args[0] + "'");
+			string pass = XOR(c_args[1], key);
 			
 			if (PQntuples(res) != 0 ) {
 				write_to_socket(socketfd, "Sorry, that username is already taken.");
 			} else {
-				PGresult* res = executeSQL("INSERT INTO users VALUES ('" + c_args[0] + "', '" + c_args[1] + "', false, NULL)");
+				PGresult* res = executeSQL("INSERT INTO users VALUES ('" + c_args[0] + "', '" + pass + "', false, NULL)");
 				
 				if (res != NULL) {
-					write_to_socket(socketfd, "Register successful! You are now logged in.");
-						
-					sockets[c_args[0]] = socketfd;
-					usernames[socketfd] = c_args[0];
+					map<int, string>::iterator ti = usernames.find(socketfd);
+					if (ti != usernames.end()) {
+						write_to_socket(socketfd, "Register successful!");
+					} else {
+						write_to_socket(socketfd, "Register successful! You are now logged in.");
+							
+						sockets[c_args[0]] = socketfd;
+						usernames[socketfd] = c_args[0];
+					}
 				} else {
 					write_to_socket(socketfd, "Sorry, couldn't register you. Try limiting the username to 16 characters and avoiding any weird symbols.");
 				}
@@ -283,13 +305,24 @@ bool check_command(int socketfd, const string &s) {
 				}
 				
 			} else if (c_args.size() == 2) {
-				PGresult* res = executeSQL("INSERT INTO messages VALUES (DEFAULT, '" + usernames[socketfd] + "', '" + c_args[0] + "', '" + c_args[1] + "', NULL)");
 				
-				if (res == NULL) {
-					write_to_socket(socketfd, "Please avoid any weird symbols.");
-				} else {
+				map<string, int>::iterator it = sockets.find(c_args[0]);
+				
+				if (it != sockets.end()) {
 					write_to_socket(sockets[c_args[0]], usernames[socketfd] + " said: " + c_args[1]);
-					write_to_socket(socketfd, "Message sent.");
+					PGresult* res = executeSQL("INSERT INTO messages VALUES (DEFAULT, '" + usernames[socketfd] + "', '" + c_args[0] + "', '" + c_args[1] + "', 'SENT')");
+					if (res == NULL) {
+						write_to_socket(socketfd, "Please avoid any weird symbols.");
+					} else {
+						write_to_socket(socketfd, "Message sent!");
+					}
+				} else {
+					PGresult* res = executeSQL("INSERT INTO messages VALUES (DEFAULT, '" + usernames[socketfd] + "', '" + c_args[0] + "', '" + c_args[1] + "', 'PENDING')");
+					if (res == NULL) {
+						write_to_socket(socketfd, "Please avoid any weird symbols.");
+					} else {
+						write_to_socket(socketfd, "Message sent!");
+					}
 				}
 			} else {
 				write_to_socket(socketfd, "Please specify message. For more information type \\help.");
@@ -318,7 +351,7 @@ bool check_command(int socketfd, const string &s) {
 		
 		for (int row = 0; row < PQntuples(res); row++) {
 			ostringstream line;
-			line << PQgetvalue(res, row, 0) << " has a score of " << PQgetvalue(res, row, 3) << " points.";
+			line << row + 1 << " - " << PQgetvalue(res, row, 0) << " has a score of " << PQgetvalue(res, row, 3) << " points.";
 			write_to_socket(socketfd, line.str());
 		}
 		

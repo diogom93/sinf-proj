@@ -1,0 +1,78 @@
+Reading from socket 7
+Socket 7 said: \login diogom93 123456
+Socket 7 said: \list
+Socket 7 said: \help
+Socket 7 said: \exit
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \login diogom93 123456
+Socket 7 said: \exit
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \register eu 123456
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \login diogom93 123456
+Socket 7 said: \register diogo ZX140893diogofeup
+Socket 7 said: \exit
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \login diogom93
+Reading from socket 8
+Socket 8 said: \login adm_ackbar 123456
+Socket 7 said: \login diogom93 123456
+Socket 7 said: \register diogo ola
+Socket 7 said: say hello
+Socket 7 said: \say hello
+Socket 8 said: \say diogom93|Hey
+Socket 7 said: \say diogom93|Hey
+Closing socket 7
+Closing socket 8
+Reading from socket 7
+Socket 7 said: \login diogo ola
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \logion diogo ola
+Socket 7 said: \login diogo ola
+Socket 7 said: \exit
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \login diogo _
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \login diogom93
+Socket 7 said: \logion diogom93 123456
+Socket 7 said: \login diogom93 123456
+Socket 7 said: \register diogo ola
+Socket 7 said: \say ol
+Socket 7 said: \exit
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \exit
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \exit
+Closing socket 7
+Reading from socket 7
+Closing socket 7
+Reading from socket 7
+Closing socket 7
+Reading from socket 7
+Closing socket 7
+Reading from socket 7
+Closing socket 7
+Reading from socket 7
+Closing socket 7
+Reading from socket 7
+Reading from socket 7
+Socket 7 said: \login diogom93 123456
+Socket 7 said: \help
+Socket 7 said: \list
+Socket 7 said: \info
+Socket 7 said: \ranking
+Socket 7 said: \identify
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \ranking
+Socket 7 said: \identify
+Closing socket 7

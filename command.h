@@ -10,9 +10,11 @@
 #include <sstream>
 #include <vector>
 #include <fstream>
+#include <functional>
 
 #include "socket.h"
 #include "clients.h"
+#include "crypto.h"
 
 using namespace std;
 

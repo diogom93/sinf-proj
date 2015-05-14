@@ -9,6 +9,8 @@ using namespace std;
 
 pthread_mutex_t durex = PTHREAD_MUTEX_INITIALIZER;
 
+ofstream log_file("log.txt", ios::app);
+
 void* player(void* args);
 
 int main(int argc, char *argv[])
@@ -58,9 +60,17 @@ void* player(void* args) {
 	int sockfd = *(int*)args;
 	string line;
 	
-	cout << "Reading from socket " << sockfd << endl;
+	write_to_socket(sockfd, "\n                   WELCOME TO");
+	char help_line[256];
+	ifstream file_in("banner.txt");
+	while (!file_in.eof()) {
+		file_in.getline(help_line, 255);
+		write_to_socket(sockfd, help_line);
+	}
+	
+	log_file << "Reading from socket " << sockfd << endl;
 	while (read_socket(sockfd, line)) {
-		cout << "Socket " << sockfd << " said: " << line << endl;
+		log_file << "Socket " << sockfd << " said: " << line << endl;
 		
 		pthread_mutex_lock(&durex);
 		if (check_command(sockfd, line) == false) {
@@ -69,7 +79,7 @@ void* player(void* args) {
 		pthread_mutex_unlock(&durex);
 	}
 	pthread_mutex_unlock(&durex);
-	cout << "Closing socket " << sockfd << endl;
+	log_file << "Closing socket " << sockfd << endl;
 
 	close(sockfd);
 	
