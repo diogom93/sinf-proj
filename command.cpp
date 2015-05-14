@@ -375,7 +375,37 @@ bool check_command(int socketfd, const string &s) {
 			}
 		}
 		
-	} else if (split_command(s) == "\\exit") { 
+	} else if (split_command(s) == "\\delete" ) {
+		c_args = split_args(s, ' ');
+		
+		if (c_args.size() < 1) {
+			write_to_socket(socketfd, "Oops, something's missing! For more information type \\help.");
+		} else {
+			if (c_args[0] == "game") {
+				PGresult* res = executeSQL("UPDATE games SET state = 'CANCELED' WHERE state = 'IDLE' AND uid = '" + usernames[socketfd] + "'");
+				
+				if (res == NULL) {
+					write_to_socket(socketfd, "Oops, something went wrong! Maybe you need \\help?");
+				} else {
+					write_to_socket(socketfd, "Game deleted sucessfully!");
+				}
+			} else if (c_args[0] == "question"){
+				if (c_args.size() < 2) {
+					write_to_socket(socketfd, "Oops, something's missing! For more information type \\help.");
+				} else {
+					PGresult* res = executeSQL("DELETE FROM questions WHERE qid = " + c_args[1] + " AND uid = '" + usernames[socketfd] + "'");
+					
+					if (res == NULL) {
+						write_to_socket(socketfd, "Oops, something went wrong! Maybe you need \\help?");
+					} else {
+						write_to_socket(socketfd, "Question deleted sucessfully!");
+					}
+				}
+			}
+		}
+	}
+	
+	else if (split_command(s) == "\\exit") { 
 		string username = usernames[socketfd] ;
 		
 		if (username != "") {
