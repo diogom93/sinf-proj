@@ -301,7 +301,26 @@ bool check_command(int socketfd, const string &s) {
 		
 		if (c_args.size() < 1) {
 			write_to_socket(socketfd, "Please specify username. For more information type \\help.");
-		} // Adicionar lógica
+		} else {
+			PGresult* res = executeSQL("SELECT * FROM users WHERE uid = '" + c_args[0] + "'");
+			
+			if (PQntuples(res) == 0) {
+				write_to_socket(socketfd, "That user does not exist.");
+			} else {
+				ostringstream line;
+				line << PQgetvalue(res, 0, 0) << " has a score of " << PQgetvalue(res, 0, 3) << " points.";
+				write_to_socket(socketfd, line.str());
+			}
+		}
+		
+	} else if (split_command(s) == "\\ranking") {
+		PGresult* res = executeSQL("SELECT * FROM users ORDER BY rank DESC");
+		
+		for (int row = 0; row < PQntuples(res); row++) {
+			ostringstream line;
+			line << PQgetvalue(res, row, 0) << " has a score of " << PQgetvalue(res, row, 3) << " points.";
+			write_to_socket(socketfd, line.str());
+		}
 		
 	} else if (split_command(s) == "\\list") {
 		map<int, string>::iterator it = usernames.find(socketfd);
