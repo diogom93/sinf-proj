@@ -271,8 +271,42 @@ bool check_command(int socketfd, const string &s) {
 			}
 		}		
 	} else if (split_command(s) == "\\start") {
-		// Adicionar lógica
 		
+		PGresult* res = executeSQL("SELECT * FROM games WHERE uid = '" + usernames[socketfd] + "' AND state = 'IDLE'");
+			
+		if (PQntuples(res) == 0) {
+			write_to_socket(socketfd, "You have no pending games.");
+		}
+
+		res = executeSQL("SELECT * FROM invites WHERE uid = '" + usernames[socketfd] +"' AND state != 'ACCEPTED'");
+		if (PQgetisnull(res){
+			write_to_socket(socketfd, "No players have joined the game.");
+		}
+				
+			else {
+			
+			int timer_val = 0;
+			ostringstream line;
+			line << "UPDATE games SET state = 'ONGOING' WHERE gid = " << PQgetvalue(game, 0, 0) << " AND uid = '" << usernames[socketfd] << "'";
+			res = executeSQL(line.str());
+			//res = executeSQL("SELECT * FROM games WHERE uid = '" + usernames[socketfd] + "' AND state = 'ONGOING'");
+			timer_val = PQgetvalue(res,0,4);
+			/*
+			*Here for reference
+			*
+			*ACTIVE_GAMES
+			*
+			*/
+			newsockfd = socketfd;
+			//needs timer, socketfd
+			if(pthread_create(&thread, NULL, game_engine, &newsockfd))
+			{
+				write_to_socket("Could not start game.");
+				exit(-1);
+			}
+			
+			write_to_socket(socketfd, "Game starting...");
+			
 	} else if (split_command(s) == "\\answer") {
 		c_args = split_args(s, ' ');
 		

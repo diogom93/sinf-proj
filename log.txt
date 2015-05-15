@@ -76,3 +76,9 @@ Reading from socket 7
 Socket 7 said: \ranking
 Socket 7 said: \identify
 Closing socket 7
+Reading from socket 7
+Socket 7 said: \login adm_ackbar 123456
+Reading from socket 9
+Socket 9 said: \login luke_skyw 123456
+Closing socket 7
+Closing socket 9
