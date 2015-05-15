@@ -18,7 +18,7 @@
 
 using namespace std;
 
-int active_games = 0;
+//sint active_games = 0;
 
 string split_command(const string &s);
 vector<string> split_args(const string &s);

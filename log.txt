@@ -82,3 +82,33 @@ Reading from socket 9
 Socket 9 said: \login luke_skyw 123456
 Closing socket 7
 Closing socket 9
+Reading from socket 7
+Socket 7 said: \help
+Socket 7 said: \login diogom93 123456
+Socket 7 said: \exit
+Closing socket 7
+Reading from socket 7
+Socket 7 said: \register andre 123456
+Socket 7 said: \say diogom93|Ola, tudo bem?
+Reading from socket 9
+Socket 9 said: \login diogom93 123456
+Socket 9 said: \help
+Socket 7 said: \ranking
+Closing socket 7
+Closing socket 9
+Reading from socket 7
+Socket 7 said: \ranking
+Socket 7 said: \info diogom93
+Socket 7 said: \help
+Reading from socket 9
+Socket 7 said: \login diogom93 123456
+Socket 9 said: \login andre 123456
+Socket 9 said: \identify
+Socket 7 said: \exit
+Closing socket 7
+Socket 9 said: \identify
+Socket 9 said: \identify vader
+Socket 9 said: \identify coco
+Socket 9 said: \help
+Socket 9 said: \challenge diogom93
+Closing socket 9

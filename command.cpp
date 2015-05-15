@@ -87,7 +87,7 @@ bool check_command(int socketfd, const string &s) {
 			if (PQntuples(res) != 0 ) {
 				write_to_socket(socketfd, "Sorry, that username is already taken.");
 			} else {
-				PGresult* res = executeSQL("INSERT INTO users VALUES ('" + c_args[0] + "', '" + pass + "', false, NULL)");
+				PGresult* res = executeSQL("INSERT INTO users VALUES ('" + c_args[0] + "', '" + pass + "', false, 0)");
 				
 				if (res != NULL) {
 					map<int, string>::iterator ti = usernames.find(socketfd);
@@ -272,40 +272,43 @@ bool check_command(int socketfd, const string &s) {
 		}		
 	} else if (split_command(s) == "\\start") {
 		
-		PGresult* res = executeSQL("SELECT * FROM games WHERE uid = '" + usernames[socketfd] + "' AND state = 'IDLE'");
+		PGresult* gid = executeSQL("SELECT * FROM games WHERE uid = '" + usernames[socketfd] + "' AND state = 'IDLE'");
 			
-		if (PQntuples(res) == 0) {
+		if (PQntuples(gid) == 0) {
 			write_to_socket(socketfd, "You have no pending games.");
 		}
-
-		res = executeSQL("SELECT * FROM invites WHERE uid = '" + usernames[socketfd] +"' AND state != 'ACCEPTED'");
-		if (PQgetisnull(res){
+		
+		ostringstream line;
+		line << "SELECT * FROM invites WHERE gid = " << PQgetvalue(gid, 0, 0) << " AND state = 'ACCEPTED'";
+		
+		PGresult* res = executeSQL(line.str());
+		if (PQntuples(res) == 0) {
 			write_to_socket(socketfd, "No players have joined the game.");
-		}
-				
-			else {
-			
+		} else {
 			int timer_val = 0;
-			ostringstream line;
-			line << "UPDATE games SET state = 'ONGOING' WHERE gid = " << PQgetvalue(game, 0, 0) << " AND uid = '" << usernames[socketfd] << "'";
+			
+			line << "";
+			line << "UPDATE games SET state = 'ONGOING' WHERE gid = " << PQgetvalue(gid, 0, 0) << " AND uid = '" << usernames[socketfd] << "'";
+			
 			res = executeSQL(line.str());
 			//res = executeSQL("SELECT * FROM games WHERE uid = '" + usernames[socketfd] + "' AND state = 'ONGOING'");
-			timer_val = PQgetvalue(res,0,4);
+			timer_val = stoi(PQgetvalue(res,0,4));
 			/*
 			*Here for reference
 			*
 			*ACTIVE_GAMES
 			*
 			*/
-			newsockfd = socketfd;
+			pthread_t thread;
+			int newsockfd = socketfd;
 			//needs timer, socketfd
-			if(pthread_create(&thread, NULL, game_engine, &newsockfd))
-			{
-				write_to_socket("Could not start game.");
-				exit(-1);
+			if (1) {//pthread_create(&thread, NULL, game_engine, &newsockfd)) {
+				write_to_socket(socketfd, "Could not start game.");
+			} else {
+				write_to_socket(socketfd, "Game starting...");
 			}
 			
-			write_to_socket(socketfd, "Game starting...");
+		}
 			
 	} else if (split_command(s) == "\\answer") {
 		c_args = split_args(s, ' ');
