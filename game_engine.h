@@ -1,3 +1,6 @@
+#ifndef _game_engine_h_
+#define _game_engine_h_
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,3 +19,7 @@
 using namespace std;
 
 void *game_engine(void *socketfd);
+
+#endif
+
+

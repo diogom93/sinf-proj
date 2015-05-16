@@ -27,22 +27,16 @@ void *game_engine(void *socketfd) {
 
 	game_file << "Timer: " << timer << " Rounds: " << rounds << endl; 
 	
-	line << "SELECT * FROM invites WHERE gid = '" << gid << "' AND state = 'ACCEPTED'";
+	line << "SELECT * FROM invites WHERE gid = " << gid << " AND state = 'ACCEPTED'";
 	res = executeSQL(line.str());
 	
-	vector<int> play_socks(PQntuples(res));
-	
-	map<string, int>::iterator it;
-	
-	for (it = sockets.begin(); it != sockets.end(); it++) {
-		game_file << it->first << " " << it->second << endl;
-	}
+	vector<int> play_socks;
 	
 	for (int rows = 0; rows < PQntuples(res); rows++) {
-		play_socks[rows] = sockets[PQgetvalue(res, rows, 1)];
-		game_file << "Player " << play_socks[rows] << sockets[PQgetvalue(res, rows, 1)] << endl;
+		play_socks.push_back(sockets[PQgetvalue(res, rows, 1)]);
+		game_file << "Player " << play_socks[rows] << endl;
 		scores[play_socks[rows]] = 0;
-	}
+	}	
 	
 	stringstream db_buff;
 	stringstream play_ans;	
@@ -51,6 +45,8 @@ void *game_engine(void *socketfd) {
 	int i = 0;
 	
 	while (i < rounds) {
+		vector<int>::iterator it;
+		
 		db_buff.str("");
 		res = executeSQL("SELECT * FROM questions ORDER BY random() LIMIT 1");
 		db_buff << PQgetvalue(res, 0, 1);
@@ -110,5 +106,9 @@ void *game_engine(void *socketfd) {
 	line << "UPDATE games SET state = 'OVER' WHERE gid = " << gid;
 	executeSQL(line.str());
 	
+	for (int k = 0; k < play_socks.size(); k++) {
+		write_to_socket(play_socks[k], "Game ended!"); 
+	}
+		
 	return 0;
 }
