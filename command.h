@@ -11,10 +11,12 @@
 #include <vector>
 #include <fstream>
 #include <functional>
+#include <string>
 
 #include "socket.h"
 #include "clients.h"
 #include "crypto.h"
+#include "game_engine.h"
 
 using namespace std;
 

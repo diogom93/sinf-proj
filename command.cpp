@@ -162,15 +162,15 @@ bool check_command(int socketfd, const string &s) {
 			if (c_args.size() < 2) {
 				write_to_socket(socketfd, "Please specify round time and number of rounds. For more information type \\help.");
 			} else {
-				int period = stoi(c_args[0]), n_questions = stoi(c_args[1]);
+				int period = atoi(c_args[0].c_str()), n_questions = atoi(c_args[1].c_str());
 				
 				if (period < 10 || period > 30) {
 					write_to_socket(socketfd, "Round time must be between 10 and 30 seconds.");
 				} else {
 					if (n_questions < 1 || n_questions > 15) {
 						write_to_socket(socketfd, "Number of rounds must be between 1 and 15.");
-					} else {
-						PGresult* res = executeSQL("SELECT * FROM games WHERE uid = '" + usernames[socketfd] +"' AND state != 'OVER'");
+					} else { 
+						PGresult* res = executeSQL("SELECT * FROM games WHERE uid = '" + usernames[socketfd] + "' AND state = 'PENDING'");
 						
 						if (PQntuples(res) == 0) {
 							executeSQL("INSERT INTO games VALUES (DEFAULT, 'IDLE', " + c_args[1] + ", " + c_args[0] + ", '" + usernames[socketfd] + "')");
@@ -276,38 +276,28 @@ bool check_command(int socketfd, const string &s) {
 			
 		if (PQntuples(gid) == 0) {
 			write_to_socket(socketfd, "You have no pending games.");
-		}
-		
-		ostringstream line;
-		line << "SELECT * FROM invites WHERE gid = " << PQgetvalue(gid, 0, 0) << " AND state = 'ACCEPTED'";
-		
-		PGresult* res = executeSQL(line.str());
-		if (PQntuples(res) == 0) {
-			write_to_socket(socketfd, "No players have joined the game.");
 		} else {
-			int timer_val = 0;
-			
-			line << "";
-			line << "UPDATE games SET state = 'ONGOING' WHERE gid = " << PQgetvalue(gid, 0, 0) << " AND uid = '" << usernames[socketfd] << "'";
-			
-			res = executeSQL(line.str());
-			//res = executeSQL("SELECT * FROM games WHERE uid = '" + usernames[socketfd] + "' AND state = 'ONGOING'");
-			timer_val = stoi(PQgetvalue(res,0,4));
-			/*
-			*Here for reference
-			*
-			*ACTIVE_GAMES
-			*
-			*/
-			pthread_t thread;
-			int newsockfd = socketfd;
-			//needs timer, socketfd
-			if (1) {//pthread_create(&thread, NULL, game_engine, &newsockfd)) {
-				write_to_socket(socketfd, "Could not start game.");
+			ostringstream line;
+			line << "SELECT * FROM invites WHERE gid = " << PQgetvalue(gid, 0, 0) << " AND state = 'ACCEPTED'";
+				
+			PGresult* res = executeSQL(line.str());
+			if (PQntuples(res) == 0) {
+				write_to_socket(socketfd, "No players have joined the game.");
 			} else {
-				write_to_socket(socketfd, "Game starting...");
+				ostringstream line;
+				line << "UPDATE games SET state = 'ONGOING' WHERE gid = " << PQgetvalue(gid, 0, 0);
+					
+				res = executeSQL(line.str());
+			 
+				pthread_t thread;
+				int newsockfd = socketfd;
+		 
+				if (pthread_create(&thread, NULL, game_engine, &newsockfd)) {
+					write_to_socket(socketfd, "Could not start game.");
+				} else {
+					write_to_socket(socketfd, "Game starting...");
+				}
 			}
-			
 		}
 			
 	} else if (split_command(s) == "\\answer") {
@@ -315,13 +305,13 @@ bool check_command(int socketfd, const string &s) {
 		
 		if (c_args.size() < 1) {
 			write_to_socket(socketfd, "Please specify the alternative. For more information type \\help.");
-		} // Adicionar lógica
+		} // Adicionar lÃ³gica
 		
 	} else if (split_command(s) == "\\ask") {
-		// Adicionar lógica
+		// Adicionar lÃ³gica
 		
 	} else if (split_command(s) == "\\cut") {
-		// Adicionar lógica
+		// Adicionar lÃ³gica
 		
 	} else if (split_command(s) == "\\say") {
 		c_args = split_args(s, '|');
@@ -421,7 +411,7 @@ bool check_command(int socketfd, const string &s) {
 		} else {
 			if (c_args.size() < 1) {
 				write_to_socket(socketfd, "Please specify question number. For more information type \\help.");
-			} // Adicionar lógica
+			} // Adicionar lÃ³gica
 		}
 		
 	} else if (split_command(s) == "\\modify") {
