@@ -146,7 +146,7 @@ void *game_engine(void *socketfd) {
 		}
 		executeSQL("UPDATE users SET state = NULL WHERE uid = '" + usernames[play_socks[k]] + "'"); 
 		line.str("");
-		line << "UPDATE users SET rank = rank + " << scores[play_socks[k]] << " WHERE uid = '" << usernames[play_socks[k]] << "'";
+		line << "UPDATE users SET rank = rank + " << scores[play_socks[k]] << ", ask_flag = 'FALSE', cut_flag = 'FALSE' WHERE uid = '" << usernames[play_socks[k]] << "'";
 		executeSQL(line.str());
 	}
 		

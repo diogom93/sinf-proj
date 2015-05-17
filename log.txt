@@ -370,3 +370,61 @@ Socket 8 said: \challenge vader
 Socket 10 said: \accept diogom93
 Socket 8 said: \start
 Socket 8 said: \ask
+Reading from socket 8
+Socket 8 said: \login vader 123456
+Reading from socket 10
+Socket 10 said: \login luke_skyw 123456
+Socket 8 said: \create 20 3
+Socket 8 said: \challenge luke_skyw
+Socket 10 said: \accept vader
+Socket 8 said: \start
+Socket 8 said: \ask
+Reading from socket 8
+Socket 8 said: \login vader 123456
+Reading from socket 10
+Socket 10 said: \login adm_ackbar 123456
+Socket 8 said: \create 20 5
+Socket 8 said: \challenge adm_ackbar
+Socket 10 said: \accept vader
+Socket 8 said: \start
+Socket 8 said: \ask
+Socket 8 said: \answer d
+Socket 10 said: \ask
+Socket 10 said: \ask
+Socket 8 said: \c
+Socket 8 said: \answer c
+Socket 10 said: \answer c
+Socket 8 said: \answer b
+Socket 10 said: \answer a
+Socket 10 said: \a
+Socket 10 said: \answer a
+Socket 8 said: \answer a
+Reading from socket 8
+Socket 8 said: \login vader 123456
+Reading from socket 10
+Socket 10 said: \login luke_skyw 123456
+Socket 10 said: \create 15 1
+Socket 10 said: \challenge vader
+Socket 8 said: \accept luke_skyw
+Socket 10 said: \start
+Socket 10 said: \ask
+Socket 8 said: \ask
+Socket 8 said: \answer D
+Closing socket 10
+Closing socket 8
+Reading from socket 8
+Socket 8 said: \login luke_skyw 123456
+Reading from socket 10
+Socket 10 said: \login adm_ackbar 123456
+Socket 8 said: \create 25 2
+Socket 8 said: \challenge adm_ackbar
+Socket 10 said: \accept luke_skyw
+Socket 8 said: \start
+Socket 8 said: \ask
+Socket 8 said: \answer D
+Socket 10 said: \answer b
+Socket 8 said: \answer C
+Socket 10 said: \ask
+Socket 10 said: \answer d
+Closing socket 8
+Closing socket 10

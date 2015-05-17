@@ -57,7 +57,7 @@ bool check_command(int socketfd, const string &s) {
 				if (PQntuples(res) == 0) {
 					write_to_socket(socketfd, "Wrong username and/or password!");
 				} else {
-					executeSQL("UPDATE users SET state = NULL WHERE uid = '" + c_args[0] + "'");
+					executeSQL("UPDATE users SET state = NULL, ask_flag = 'FALSE', cut_flag = 'FALSE' WHERE uid = '" + c_args[0] + "'");
 					write_to_socket(socketfd, "Login successful!");
 					sockets[c_args[0]] = socketfd;
 					usernames[socketfd] = c_args[0];
@@ -335,22 +335,22 @@ bool check_command(int socketfd, const string &s) {
 					play = PQgetvalue(resround, 0, 3);
 					query << "INSERT INTO plays VALUES ('" << usernames[socketfd] << "', " << rid << ", '" << play << "', DEFAULT, DEFAULT)";
 					executeSQL(query.str());
-					
+					write_to_socket(socketfd, "Answer stored!");
 				} else if( (c_args[0] == "b") || (c_args[0] == "B") ){
 					play = PQgetvalue(resround, 0, 4);
 					query << "INSERT INTO plays VALUES ('" << usernames[socketfd] << "', " << rid << ", '" << play << "', DEFAULT, DEFAULT)";
 					line << executeSQL(query.str());
-					
+					write_to_socket(socketfd, "Answer stored!");
 				} else if( (c_args[0] == "c") || (c_args[0] == "C") ){
 					play = PQgetvalue(resround, 0, 5);
 					query << "INSERT INTO plays VALUES ('" << usernames[socketfd] << "', " << rid << ", '" << play << "', DEFAULT, DEFAULT)";
 					line << executeSQL(query.str());
-					
+					write_to_socket(socketfd, "Answer stored!");
 				} else if( (c_args[0] == "d") || (c_args[0] == "D") ){
 					play = PQgetvalue(resround, 0, 6);
 					query << "INSERT INTO plays VALUES ('" << usernames[socketfd] << "', " << rid << ", '" << play << "', DEFAULT, DEFAULT)";
 					line << executeSQL(query.str());
-					
+					write_to_socket(socketfd, "Answer stored!");
 				} else {
 					write_to_socket(socketfd, "Invalid answer!");
 				}
@@ -361,14 +361,15 @@ bool check_command(int socketfd, const string &s) {
 		stringstream line;
 		vector<string> ans_list;
 		int ans_count[4] = {0};
-		string gid, rid, qid;
+		string gid, rid, qid, flag;
 		
-		PGresult* resgame = executeSQL("SELECT state FROM users WHERE uid = '" + usernames[socketfd] + "'");
+		PGresult* resgame = executeSQL("SELECT * FROM users WHERE uid = '" + usernames[socketfd] + "'");
+		flag = PQgetvalue(resgame, 0, 4);
 		
-		if (PQgetisnull(resgame, 0, 0)) {
+		if (PQgetisnull(resgame, 0, 3)) {
 			write_to_socket(socketfd, "You are not presently in game! For more information type \\help.");
 		} else {
-			gid = PQgetvalue(resgame, 0, 0);
+			gid = PQgetvalue(resgame, 0, 3);
 			
 			PGresult* resround = executeSQL("SELECT * FROM rounds WHERE gid = " + gid + " ORDER BY rid DESC LIMIT 1");
 			qid = PQgetvalue(resround, 0, 2);
@@ -378,7 +379,7 @@ bool check_command(int socketfd, const string &s) {
 			
 			if (PQntuples(res) != 0) {
 				write_to_socket(socketfd, "You have already answered!");
-			} else if (PQgetvalue(res, 0, 3) == "1") {
+			} else if (flag == "t") {
 				write_to_socket(socketfd, "You have already used \\ask! Cheater!");
 			} else {
 				line << PQgetvalue(resround, 0, 3);
@@ -401,25 +402,26 @@ bool check_command(int socketfd, const string &s) {
 				PGresult* ans_hist = executeSQL(line.str());
 				line.str("");
 				
-				for(int i = 0; i < PQntuples(ans_hist); i++) {
-					line << PQgetvalue(resround, i, 0);
-					int j = 0;
-					for (vector<string>::iterator it = ans_list.begin(); it != ans_list.end(); ++it) {
+				int j = 0;
+				for(int rows = 0; rows < PQntuples(ans_hist); rows++) {
+					line << PQgetvalue(ans_hist, rows, 0);
+					j = 0;
+					for (vector<string>::iterator it = ans_list.begin(); it != ans_list.end(); ++it, j++) {
 						if(*it == line.str()) 
 							ans_count[j]++;
-						j++; 
 					}
-					line.str() = "";
+					line.str("");
 				}
-
-				line << "A blast from the past! The results of the previous games were recorded as:" << "\nA - " << ans_count[0] << "\nB - " << ans_count[1] << "\nC - " << ans_count[2] << "\nD - " << ans_count[3] << endl;
+				
+				line.str("");
+				line << "A blast from the past! The results of previous games were recorded as:" << "\nA - " << ans_count[0] << "\nB - " << ans_count[1] << "\nC - " << ans_count[2] << "\nD - " << ans_count[3] << endl;
 				write_to_socket(socketfd, line.str());
-				executeSQL("UPDATE plays SET askflag = 'TRUE' WHERE uid = '" + usernames[socketfd] + "' AND rid = " + rid);
+				executeSQL("UPDATE users SET ask_flag = 'TRUE' WHERE uid = '" + usernames[socketfd] + "'");
 			}
 		}
 		
 	} else if (split_command(s) == "\\cut") {
-		string gid, qid, rid, correct_ans, db_cut = "";
+		/*string gid, qid, rid, correct_ans, db_cut = "";
 		stringstream line;
 		vector<string> ans_list;
 		int cut_ans[2] = {0};
@@ -443,12 +445,15 @@ bool check_command(int socketfd, const string &s) {
 		line << PQgetvalue(resround, 0, 3);
 		ans_list.push_back(line.str());
 		line.str() = "";
+		
 		line << PQgetvalue(resround, 0, 4);
 		ans_list.push_back(line.str());
 		line.str() = "";
+		
 		line << PQgetvalue(resround, 0, 5);
 		ans_list.push_back(line.str());
 		line.str() = "";
+		
 		line << PQgetvalue(resround, 0, 6);
 		ans_list.push_back(line.str());
 		line.str() = "";
@@ -473,7 +478,7 @@ bool check_command(int socketfd, const string &s) {
 		db_cut += (char)(cut_ans[1]+64);
 		PGresult* resupdate = executeSQL("UPDATE plays SET cutans = '" + db_cut + "' WHERE uid = " + usernames[socketfd] + "AND rid = '" + rid + "'");
 		line << "And the new answer selection makes a striking appearance!" << "\n" << db_cut.at(0) << " - " << ans_list[correct_ans[0]] << db_cut.at(1) << " - " << ans_list[correct_ans[1]] << endl;
-		write_to_socket(socketfd, line.str());
+		write_to_socket(socketfd, line.str());*/
 		
 	} else if (split_command(s) == "\\say") {
 		c_args = split_args(s, '|');

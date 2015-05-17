@@ -272,3 +272,56 @@ B - Coruscant
 C - Tatooine
 D - Naboo
 
+Timer: 20 Rounds: 3
+Player 8
+Who was the father of Luke Skywalker?A - Ben Skywalker
+B - Obi-Wan Kenobi
+C - Jar-Jar Binks
+D - Darth Vader
+
+Timer: 20 Rounds: 5
+Player 8
+Which was Palpatine's homeworld?A - Dathomir
+B - Coruscant
+C - Tatooine
+D - Naboo
+
+Which is the best programming language?A - Assembly
+B - Java
+C - Python
+D - C
+
+Which was Palpatine's homeworld?A - Tatooine
+B - Naboo
+C - Coruscant
+D - Dathomir
+
+Who said 'It's a trap?'A - Admiral Ackbar
+B - Obi-Wan Kenobi
+C - Boba Fett
+D - Nien Nunb
+
+Which was Palpatine's homeworld?A - Naboo
+B - Tatooine
+C - Dathomir
+D - Coruscant
+
+Timer: 15 Rounds: 1
+Player 10
+Who said 'It's a trap?'A - Obi-Wan Kenobi
+B - Boba Fett
+C - Nien Nunb
+D - Admiral Ackbar
+
+Timer: 25 Rounds: 2
+Player 8
+Who was the father of Luke Skywalker?A - Ben Skywalker
+B - Obi-Wan Kenobi
+C - Jar-Jar Binks
+D - Darth Vader
+
+Which is the best programming language?A - Assembly
+B - Java
+C - Python
+D - C
+
