@@ -31,6 +31,10 @@ void *game_engine(void *socketfd) {
 	line << "SELECT * FROM invites WHERE gid = " << gid << " AND state = 'ACCEPTED'";
 	res = executeSQL(line.str());
 	
+	line.str("");
+	line << "UPDATE invites SET state = 'DECLINED' WHERE gid = " << gid;
+	executeSQL(line.str());
+	
 	vector<int> play_socks;
 	
 	play_socks.push_back(newsockfd);
