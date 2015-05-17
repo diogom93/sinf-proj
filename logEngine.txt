@@ -325,3 +325,118 @@ B - Java
 C - Python
 D - C
 
+Timer: 20 Rounds: 3
+Player 8
+Which was Palpatine's homeworld?A - Dathomir
+B - Coruscant
+C - Tatooine
+D - Naboo
+
+Timer: 20 Rounds: 3
+Player 8
+RouletteA - Right
+B - Right
+C - Right
+D - Right
+
+Timer: 20 Rounds: 3
+Player 10
+RouletteA - Right
+B - Right
+C - Right
+D - Right
+
+Which was Palpatine's homeworld?A - Coruscant
+B - Tatooine
+C - Naboo
+D - Dathomir
+
+Timer: 20 Rounds: 3
+Player 10
+Which was Palpatine's homeworld?A - Dathomir
+B - Coruscant
+C - Tatooine
+D - Naboo
+
+Which is the best programming language?A - Assembly
+B - Java
+C - Python
+D - C
+
+Timer: 20 Rounds: 3
+Player 8
+Which is the best programming language?A - C
+B - Assembly
+C - Java
+D - Python
+
+Timer: 20 Rounds: 3
+Player 8
+Who was the father of Luke Skywalker?A - Ben Skywalker
+B - Obi-Wan Kenobi
+C - Jar-Jar Binks
+D - Darth Vader
+
+Timer: 20 Rounds: 3
+Player 8
+Who said 'It's a trap?'A - Obi-Wan Kenobi
+B - Boba Fett
+C - Nien Nunb
+D - Admiral Ackbar
+
+RouletteA - Maybe this is the right one
+B - This one is wrong
+C - Is this right
+D - Or is this right?
+
+What was Anakin's Skywalker mother's name?A - Smee
+B - Shmi
+C - Beru
+D - Lakshmi
+
+Timer: 20 Rounds: 3
+Player 8
+RouletteA - Or is this right?
+B - Maybe this is the right one
+C - This one is wrong
+D - Is this right
+
+Which is the best programming language?A - Assembly
+B - Java
+C - Python
+D - C
+
+Timer: 20 Rounds: 3
+Player 8
+Who was the father of Luke Skywalker?A - Ben Skywalker
+B - Obi-Wan Kenobi
+C - Jar-Jar Binks
+D - Darth Vader
+
+RouletteA - Maybe this is the right one
+B - This one is wrong
+C - Is this right
+D - Or is this right?
+
+Which was Palpatine's homeworld?A - Tatooine
+B - Naboo
+C - Coruscant
+D - Dathomir
+
+Timer: 20 Rounds: 3
+Player 10
+RouletteA - Or is this right?
+B - Maybe this is the right one
+C - This one is wrong
+D - Is this right
+
+Which was Palpatine's homeworld?A - Coruscant
+B - Tatooine
+C - Naboo
+D - Dathomir
+
+Who said 'It's a trap?'A - Nien Nunb
+B - Admiral Ackbar
+C - Boba Fett
+D - Obi-Wan Kenobi
+

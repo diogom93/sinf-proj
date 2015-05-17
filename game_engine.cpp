@@ -113,7 +113,7 @@ void *game_engine(void *socketfd) {
 			
 			if (PQntuples(res) == 0) {
 				query.str("");
-				query << "INSERT INTO plays VALUES ('" << usernames[play_socks[k]] << "', " << rid << ", NULL, DEFAULT, DEFAULT)";
+				query << "INSERT INTO plays VALUES ('" << usernames[play_socks[k]] << "', " << rid << ", NULL, NULL)";
 				executeSQL(query.str());
 			} else {
 				string answer = PQgetvalue(res, 0, 0);
