@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 	}
 	
 	close(sockfd);
-	
+	log_file.close();
 	closeDB();
 	
 	return 0; 

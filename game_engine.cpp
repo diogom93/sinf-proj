@@ -10,6 +10,7 @@ void *game_engine(void *socketfd) {
 	map<int, int> scores;
 	
 	ostringstream line;
+	ostringstream query;
 	stringstream temp_buf;
 	string correct_ans = "";
 	
@@ -32,15 +33,23 @@ void *game_engine(void *socketfd) {
 	
 	vector<int> play_socks;
 	
+	play_socks.push_back(newsockfd);
+	scores[newsockfd] = 0;
 	for (int rows = 0; rows < PQntuples(res); rows++) {
 		play_socks.push_back(sockets[PQgetvalue(res, rows, 1)]);
 		game_file << "Player " << play_socks[rows] << endl;
 		scores[play_socks[rows]] = 0;
-	}	
+	}
 	
 	stringstream db_buff;
 	stringstream play_ans;	
 	stringstream lock_in;
+
+	for (int k = 0; k < play_socks.size(); k++) {
+		line.str("");
+		line << "UPDATE users SET state = " << gid << " WHERE uid = '" << usernames[play_socks[k]] << "'";
+		executeSQL(line.str());
+	}
 		
 	int i = 0;
 	
@@ -51,11 +60,11 @@ void *game_engine(void *socketfd) {
 		res = executeSQL("SELECT * FROM questions ORDER BY random() LIMIT 1");
 		db_buff << PQgetvalue(res, 0, 1);
 		
-		write_to_socket(newsockfd, db_buff.str());
-		
 		for (int k = 0; k < play_socks.size(); k++) {
 			write_to_socket(play_socks[k], db_buff.str()); 
 		}
+		
+		game_file << db_buff.str();
 		
 		vector<string> shuffled_ans;
 		db_buff.str("");
@@ -90,14 +99,35 @@ void *game_engine(void *socketfd) {
 		
 		game_file << play_ans.str() << endl;
 		
-		write_to_socket(newsockfd, play_ans.str());
-		
 		for (int k = 0; k < play_socks.size(); k++) {
 			write_to_socket(play_socks[k], play_ans.str()); 
 		}
 
 		play_ans.str("");
 		usleep(timer * 1000000);
+		
+		for (int k = 0; k < play_socks.size(); k++) {
+			line.str("");
+			line << "SELECT answer FROM plays WHERE rid = " << rid << " AND uid = '" << usernames[play_socks[k]] << "'";
+			PGresult* res = executeSQL(line.str());
+			
+			if (PQntuples(res) == 0) {
+				query.str("");
+				query << "INSERT INTO plays VALUES ('" << usernames[play_socks[k]] << "', " << rid << ", NULL, DEFAULT, DEFAULT)";
+				executeSQL(query.str());
+			} else {
+				string answer = PQgetvalue(res, 0, 0);
+				query.str("");
+				query << "SELECT r_answer FROM questions WHERE qid = " << qid;
+				res = executeSQL(query.str());
+				if (PQgetvalue(res, 0, 0) == answer) {
+					write_to_socket(play_socks[k], "Correct!");
+					scores[play_socks[k]] += 10;
+				} else {
+					write_to_socket(play_socks[k], "Wrong!");
+				}
+			}
+		}
 
 		i++;
 	}
@@ -105,9 +135,19 @@ void *game_engine(void *socketfd) {
 	line.str("");
 	line << "UPDATE games SET state = 'OVER' WHERE gid = " << gid;
 	executeSQL(line.str());
+	executeSQL("UPDATE users SET state = NULL WHERE uid = '" + usernames[newsockfd] + "'"); 
 	
 	for (int k = 0; k < play_socks.size(); k++) {
-		write_to_socket(play_socks[k], "Game ended!"); 
+		write_to_socket(play_socks[k], "Game ended!");
+		for (int i = 0; i < play_socks.size(); i++) {
+			line.str("");
+			line << usernames[play_socks[i]] << " has scored " << scores[play_socks[i]] << " points.";
+			write_to_socket(play_socks[k], line.str());
+		}
+		executeSQL("UPDATE users SET state = NULL WHERE uid = '" + usernames[play_socks[k]] + "'"); 
+		line.str("");
+		line << "UPDATE users SET rank = rank + " << scores[play_socks[k]] << " WHERE uid = '" << usernames[play_socks[k]] << "'";
+		executeSQL(line.str());
 	}
 		
 	return 0;

@@ -1,353 +1,38 @@
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \list
-Socket 7 said: \help
-Socket 7 said: \exit
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \exit
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \register eu 123456
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \register diogo ZX140893diogofeup
-Socket 7 said: \exit
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \login diogom93
 Reading from socket 8
-Socket 8 said: \login adm_ackbar 123456
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \register diogo ola
-Socket 7 said: say hello
-Socket 7 said: \say hello
-Socket 8 said: \say diogom93|Hey
-Socket 7 said: \say diogom93|Hey
-Closing socket 7
+Reading from socket 8
 Closing socket 8
-Reading from socket 7
-Socket 7 said: \login diogo ola
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \logion diogo ola
-Socket 7 said: \login diogo ola
-Socket 7 said: \exit
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \login diogo _
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \login diogom93
-Socket 7 said: \logion diogom93 123456
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \register diogo ola
-Socket 7 said: \say ol
-Socket 7 said: \exit
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \exit
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \exit
-Closing socket 7
-Reading from socket 7
-Closing socket 7
-Reading from socket 7
-Closing socket 7
-Reading from socket 7
-Closing socket 7
-Reading from socket 7
-Closing socket 7
-Reading from socket 7
-Closing socket 7
-Reading from socket 7
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \help
-Socket 7 said: \list
-Socket 7 said: \info
-Socket 7 said: \ranking
-Socket 7 said: \identify
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \ranking
-Socket 7 said: \identify
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \login adm_ackbar 123456
-Reading from socket 9
-Socket 9 said: \login luke_skyw 123456
-Closing socket 7
-Closing socket 9
-Reading from socket 7
-Socket 7 said: \help
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \exit
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \register andre 123456
-Socket 7 said: \say diogom93|Ola, tudo bem?
-Reading from socket 9
-Socket 9 said: \login diogom93 123456
-Socket 9 said: \help
-Socket 7 said: \ranking
-Closing socket 7
-Closing socket 9
-Reading from socket 7
-Socket 7 said: \ranking
-Socket 7 said: \info diogom93
-Socket 7 said: \help
-Reading from socket 9
-Socket 7 said: \login diogom93 123456
-Socket 9 said: \login andre 123456
-Socket 9 said: \identify
-Socket 7 said: \exit
-Closing socket 7
-Socket 9 said: \identify
-Socket 9 said: \identify vader
-Socket 9 said: \identify coco
-Socket 9 said: \help
-Socket 9 said: \challenge diogom93
-Closing socket 9
-Reading from socket 7
-Socket 7 said: \login diogom93 12345
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Reading from socket 11
-Reading from socket 13
-Socket 13 said: \login adm_ackbar 123456
-Socket 11 said: \login luke_skyw 123456
-Socket 9 said: [A
-Socket 9 said: \login vader 123456
-Socket 7 said: \help
-Socket 7 said: \create 15 5
-Socket 7 said: \invite adm_ackbar
-Socket 7 said: \challenge adm_ackbar
-Closing socket 7
-Closing socket 9
-Closing socket 11
-Closing socket 13
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Socket 9 said: \login adm_ackbar 123456
-Reading from socket 11
-Socket 11 said: \login luke_skyw 123456
-Reading from socket 13
-Socket 13 said: \login vader 123456
-Socket 7 said: \create 15 5
-Closing socket 7
-Closing socket 9
-Closing socket 11
-Closing socket 13
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \create 15 5
-Reading from socket 9
-Socket 9 said: \login adm_ackbar 123456
-Reading from socket 11
-Socket 11 said: \login luke_skyw 123456
-Reading from socket 13
-Socket 13 said: \login vader 123456
-Socket 7 said: \challenge adm_ackbar
-Socket 7 said: \challenge luke_skyw
-Socket 7 said: \challenge vader
-Socket 9 said: \accept diogom93
-Socket 11 said: \accept diogom93
-Socket 13 said: \accept diogom93
-Socket 7 said: \start
-Reading from socket 7
-Socket 7 said: \login diogom93
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Socket 9 said: \login adm_ackbar 123456
-Reading from socket 11
-Socket 11 said: \login luke_skyw 123456
-Reading from socket 13
-Socket 13 said: \login vader 123456
-Socket 7 said: \start
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \start
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Closing socket 7
-Reading from socket 7
-Socket 9 said: \login diogom93 123456
-Socket 7 said: \login adm_ackbar 12345
-Socket 7 said: \exit
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \login adm_ackbar 123456
-Reading from socket 11
-Socket 11 said: \login luke_skyw
-Socket 11 said: \login luke_skyw 123456
-Reading from socket 13
-Socket 13 said: \login vader 123456
-Socket 9 said: \exit
-Closing socket 9
-Reading from socket 9
-Socket 9 said: \login diogom93 123456
-Socket 9 said: \start
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \start
-Closing socket 7
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Socket 9 said: \login adm_ackbar 123456
-Reading from socket 11
-Socket 11 said: \login luke_skyw 123456
-Reading from socket 13
-Socket 13 said: \login vader 123456
-Socket 7 said: \start
-Closing socket 7
-Closing socket 9
-Closing socket 11
-Closing socket 13
-Reading from socket 7
-Reading from socket 9
-Socket 9 said: \login adm_ackbar
-Socket 9 said: \login adm_ackbar 123456
-Socket 7 said: \login diogom93 123456
-Socket 7 said: \start
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Socket 9 said: \login adm_ackbar
-Socket 9 said: \login adm_ackbar 123456
-Socket 7 said: \start
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Socket 9 said: \login adm_akcbar 123456
-Socket 9 said: \login adm_ackbar 123456
-Socket 7 said: \start
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Socket 9 said: \login adm_ackbar 123456
-Reading from socket 11
-Socket 11 said: \login luke_skyw 123456
-Reading from socket 13
-Socket 13 said: \login vader 123456
-Socket 7 said: \start
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Socket 9 said: \login adm_ackbar 123456
-Reading from socket 11
-Socket 11 said: \login vader 123456
-Reading from socket 13
-Socket 13 said: \login luke_skyw 123456
-Socket 7 said: \help
-Socket 7 said: \create 15 5
-Socket 7 said: \delete game
-Socket 7 said: \create 15 5
-Closing socket 7
-Closing socket 9
-Closing socket 11
-Closing socket 13
-Reading from socket 7
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Socket 9 said: \login adm_ackbar 123456
-Reading from socket 11
-Socket 11 said: \login luke_skyw 123456
-Reading from socket 13
-Socket 13 said: \login vader 123456
-Socket 7 said: \create 15 5
-Socket 7 said: \challenge adm_ackbar
-Socket 7 said: \challenge luke_skyw
-Socket 7 said: \challenge vader
-Socket 9 said: \accept
-Socket 9 said: \accept diogom93
-Socket 11 said: \accept luke_skyw
-Socket 11 said: \accept diogom93
-Socket 13 said: \accept diogom93
-Socket 7 said: \start
-Closing socket 7
-Closing socket 9
-Closing socket 11
-Closing socket 13
-Reading from socket 7
-Socket 7 said: \login diogom93
-Socket 7 said: \login diogom93 123456
-Reading from socket 9
-Socket 9 said: \login vader 123456
-Socket 7 said: \create 15 5
-Socket 7 said: \challenge vader
-Socket 9 said: \accept diogom93
-Socket 7 said: \start
-Closing socket 7
-Closing socket 9
+Reading from socket 8
+Socket 8 said: \exit
+Closing socket 8
+Reading from socket 8
+Closing socket 8
+Reading from socket 8
+Closing socket 8
+Reading from socket 8
+Closing socket 8
+Reading from socket 8
+Socket 8 said: 
+Socket 8 said: \exit
+Closing socket 8
+Reading from socket 8
+Socket 8 said: \exit
+Closing socket 8
 Reading from socket 8
 Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 15 5
-Socket 8 said: \challenge vader
-Socket 10 said: \accept
-Socket 10 said: \accept diogom93
-Socket 8 said: \start
 Closing socket 8
-Closing socket 10
 Reading from socket 8
 Socket 8 said: \login diogom93
 Socket 8 said: \login diogom93 123456
-Socket 8 said: \create 5 5
-Socket 8 said: \create 15 5
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \challenge vader 
-Socket 10 said: \accept
-Socket 10 said: \accept diogom93
+Socket 8 said: \create 10 2
 Socket 8 said: \start
 Closing socket 8
-Closing socket 10
 Reading from socket 8
+Socket 8 said: \login diogom93
 Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \start 15 5
-Reading from socket 8
-Reading from socket 10
-Socket 10 said: \login vader 123456
 Socket 8 said: \start
-Socket 8 said: \create 15 5
-Socket 8 said: \create 15 5
-Closing socket 8
-Closing socket 10
 Reading from socket 8
 Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 15 5
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
 Socket 8 said: \start
-Socket 8 said: \answer A
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Socket 8 said: \create 15 5
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \challenge vader
-Socket 10 said: \accept
-Socket 10 said: \accept diogom93
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Socket 8 said: \create 15 5
 Reading from socket 10
 Socket 10 said: \login vader 123456
 Socket 8 said: \challenge vader
@@ -355,90 +40,36 @@ Socket 10 said: \accept diogom93
 Socket 8 said: \start
 Closing socket 8
 Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login adm_ackbar 123456
-Reading from socket 12
-Socket 12 said: \login luke_skyw
-Socket 12 said: \login luke_skyw 123456
-Reading from socket 14
-Socket 14 said: \login vader 123456
-Socket 8 said: \create 15 5
-Socket 8 said: \challenge adm_ackbar
-Socket 8 said: \challenge luke_skyw
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 12 said: \accept diogom93
-Socket 14 said: \accept diogom93
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Closing socket 12
-Closing socket 14
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 15 5
-Socket 8 said: \challenge vader 
-Socket 10 said: \accept diogom93
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 15 5
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Reading from socket 10
-Reading from socket 12
-Socket 12 said: \login luke_skyw 123456
-Socket 10 said: \login vader 123456
-Socket 8 said: \login diogom93 123456
-Socket 8 said: \create 15 5
-Socket 8 said: \challenge vader
-Socket 8 said: \challenge luke_skyw
-Socket 10 said: \accept
-Socket 10 said: \accept diogom93
-Socket 12 said: \accept diogom93
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Closing socket 12
 Reading from socket 8
 Socket 8 said: \login vader 123456
-Reading from socket 10
-Socket 10 said: \login diogom93 123456
-Socket 8 said: \create 15 5
-Socket 8 said: \challenge diogom93
-Socket 10 said: \accept vader
+Socket 8 said: \create 10 2
 Socket 8 said: \start
-Closing socket 8
-Closing socket 10
 Reading from socket 8
-Socket 8 said: \login vader
-Socket 8 said: \login vader 123456
-Reading from socket 10
-Socket 10 said: \login adm_ackbar 123456
-Reading from socket 12
-Socket 12 said: \login diogom93
-Socket 12 said: \login diogom93 123456
-Socket 8 said: \create 15 5
-Socket 8 said: \challenge adm_ackbar
-Socket 8 said: \challenge diogom93
-Socket 10 said: \accept vader
-Socket 12 said: \accept vader
+Socket 8 said: \login diogom93
+Socket 8 said: \login diogom93 123456
+Closing socket 8
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Socket 8 said: \start
 Socket 8 said: \start
 Closing socket 8
-Closing socket 10
-Closing socket 12
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Socket 8 said: \start
+Socket 8 said: \create 10 2
+Socket 8 said: \start
+Closing socket 8
+Reading from socket 8
+Reading from socket 10
+Socket 10 said: \login vader 123456
+Socket 8 said: \login diogom93 123456
+Socket 8 said: \create 15 3
+Socket 8 said: \challenge vader
+Socket 10 said: \accept diogom93
+Socket 8 said: \start
+Socket 8 said: \start
+Socket 8 said: D
+Socket 8 said: \answer D
 Reading from socket 8
 Socket 8 said: \login diogom93 123456
 Reading from socket 10
@@ -447,23 +78,58 @@ Socket 8 said: \create 15 2
 Socket 8 said: \challenge vader
 Socket 10 said: \accept diogom93
 Socket 8 said: \start
-Closing socket 8
-Closing socket 10
+Socket 8 said: \answer D
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
 Reading from socket 8
 Socket 8 said: \login diogom93 123456
 Reading from socket 10
 Socket 10 said: \login vader 123456
-Socket 8 said: \create 10 5
+Socket 8 said: \create 15 3
+Socket 8 said: \challenge vader
+Socket 10 said: \accept
+Socket 10 said: \accept diogom93
+Socket 8 said: \start
+Socket 8 said: \answer D
+Socket 10 said: \answer D
+Closing socket 8
+Closing socket 10
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Socket 8 said: \create 20 3
+Reading from socket 10
+Socket 10 said: \login vader 123456
 Socket 8 said: \challenge vader
 Socket 10 said: \accept diogom93
 Socket 8 said: \start
+Socket 8 said: \answer D
 Closing socket 8
 Closing socket 10
 Reading from socket 8
 Socket 8 said: \login diogom93 123456
 Reading from socket 10
 Socket 10 said: \login vader 123456
+Socket 8 said: \create 15 3
+Socket 8 said: \challenge vader
+Socket 10 said: \\accept diogom93
+Socket 10 said: \help
+Socket 10 said: \accept diogom93
 Socket 8 said: \start
+Socket 8 said: \anwer D
+Socket 8 said: \answer C
+Closing socket 8
+Closing socket 10
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Reading from socket 10
+Socket 10 said: \login vader 123456
+Socket 8 said: \create 15 3
+Socket 8 said: \challenge vader
+Socket 10 said: \\accept diogom93
+Socket 10 said: \accept diogom93
+Socket 8 said: \start
+Socket 8 said: \answer C
+Socket 10 said: \answer C
 Closing socket 8
 Closing socket 10
 Reading from socket 8
@@ -471,162 +137,196 @@ Socket 8 said: \login diogom93
 Socket 8 said: \login diogom93 123456
 Reading from socket 10
 Socket 10 said: \login vader 123456
-Socket 8 said: \create 10 2
+Socket 10 said: 
+Socket 8 said: \create 15 3
+Socket 10 said: 
 Socket 8 said: \challenge vader
 Socket 10 said: \accept diogom93
 Socket 8 said: \start
+Socket 8 said: \answer D
+Socket 8 said: \answer C
+Socket 8 said: \answer D
+Closing socket 8
+Closing socket 10
 Reading from socket 8
+Socket 8 said: \login adm_ackbar 123456
 Reading from socket 10
-Socket 10 said: \login diogom93 123456
-Socket 10 said: \create 10 2
-Socket 8 said: \login vader 123456
-Socket 10 said: \challenge vader
-Socket 8 said: 
-Socket 8 said: \accept diogom93
+Socket 10 said: \login luke_skyw 123456
+Socket 10 said: \create 20 3
+Socket 10 said: \challenge adm_ackbar
+Socket 8 said: \accept luke_skyw
 Socket 10 said: \start
+Socket 10 said: \answer D
+Socket 8 said: \answer C
+Socket 10 said: \answer C
+Socket 8 said: \answer B
+Socket 8 said: \answer D
+Socket 8 said: \answer B
+Socket 10 said: \answer B
 Reading from socket 8
 Socket 8 said: \login diogom93 123456
 Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 10 2
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 8 said: \start 
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 10 said: \create 10 2
-Socket 10 said: \challenge diogom93
-Socket 8 said: \accept vader
-Socket 10 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 10 2
-Socket 8 said: \challenge vader
+Socket 10 said: \login andre 123456
+Socket 8 said: \create 15 3
+Socket 8 said: \challenge andre
 Socket 10 said: \accept diogom93
 Socket 8 said: \start
+Socket 8 said: \answer d
+Socket 8 said: \answer b
 Closing socket 8
 Closing socket 10
 Reading from socket 8
 Socket 8 said: \login diogom93 123456
 Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 10 2
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 8 said: \start
 Closing socket 8
 Closing socket 10
 Reading from socket 8
 Socket 8 said: \login diogom93 123456
 Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 10 2
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 8 said: \start
-Reading from socket 8
-Socket 8 said: \login diogom93
-Socket 8 said: \login diogom93 123456
-Socket 8 said: \create 10 2
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 8 said: \start\start
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 10 2
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Socket 8 said: \create 10 2
-Socket 8 said: \challenge vader
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Socket 8 said: \create 10 2
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 10 said: \create 10 2
-Socket 10 said: \challenge diogom93
-Socket 8 said: \accept vader
-Socket 10 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 10 2
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 10 said: \start
-Socket 10 said: \start
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader 123456
-Socket 8 said: \create 10 2
-Socket 8 said: \challenge vader
-Socket 10 said: \accept diogom93
-Socket 8 said: \start
-Closing socket 8
-Closing socket 10
-Reading from socket 8
-Socket 8 said: \login diogom93 123456
-Reading from socket 10
-Socket 10 said: \login vader
-Socket 10 said: \login vader
 Socket 10 said: \login vader 123456
 Reading from socket 12
-Socket 12 said: \login adm_ackbar
 Socket 12 said: \login adm_ackbar 123456
 Reading from socket 14
-Socket 14 said: \login luke_skyw 123456
-Socket 8 said: \create 10 5
+Socket 14 said: \login andre 123456
+Reading from socket 16
+Socket 16 said: \login luke_skyw 123456
+Socket 8 said: \create 20 3
+Socket 8 said: \challenge andre
 Socket 8 said: \challenge vader
 Socket 8 said: \challenge adm_ackbar
 Socket 8 said: \challenge luke_skyw
 Socket 10 said: \accept diogom93
 Socket 12 said: \accept diogom93
 Socket 14 said: \accept diogom93
+Socket 16 said: \accept diogom93
 Socket 8 said: \start
+Socket 8 said: \answer D
+Socket 10 said: \answer A
+Socket 10 said: \answer C
+Socket 8 said: \answer C
+Socket 8 said: \answer B
+Socket 10 said: \answer D
 Closing socket 8
 Closing socket 10
 Closing socket 12
 Closing socket 14
+Closing socket 16
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Reading from socket 10
+Socket 10 said: \login adm_ackbar 123456
+Reading from socket 12
+Socket 12 said: \login vader 1234567
+Socket 12 said: \login vader 123456
+Reading from socket 14
+Socket 14 said: \login luke_skyw 123456
+Socket 8 said: \challenge adm_ackbar
+Socket 8 said: \create 20 3
+Socket 8 said: \challenge adm_ackbar
+Socket 8 said: \challenge vader
+Socket 8 said: \challenge luke_skyw
+Socket 10 said: \accept diogom93
+Socket 12 said: \accept diogom93
+Socket 14 said: \accept diogom93
+Socket 8 said: \start
+Socket 8 said: \answer d
+Socket 10 said: \answer C
+Socket 12 said: \answer a
+Socket 14 said: \answer b
+Socket 8 said: \answer b
+Socket 10 said: \answer a
+Socket 12 said: \answer d
+Socket 14 said: \answer c
+Socket 8 said: \answer a
+Socket 10 said: \answer b
+Socket 12 said: \answer c
+Socket 14 said: \answer d
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Socket 8 said: \exit
+Closing socket 8
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Reading from socket 10
+Socket 10 said: \login vader 123456
+Socket 8 said: \create 20 3
+Socket 8 said: \challenge vader
+Socket 10 said: \accept diogom93
+Socket 8 said: \start
+Socket 8 said: \D
+Socket 8 said: \answer D
+Socket 10 said: \answer C
+Socket 8 said: \answer b
+Socket 10 said: \answer b
+Socket 8 said: \answer b
+Socket 10 said: \answer c
+Reading from socket 8
+Socket 8 said: \login vader
+Socket 8 said: \login vader 123456
+Reading from socket 10
+Socket 10 said: \login diogom93 123456
+Socket 8 said: \create 20 3
+Socket 8 said: \challenge diogom93
+Socket 10 said: \accept vader
+Socket 8 said: \start
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Reading from socket 10
+Socket 10 said: \login vader 123456
+Socket 8 said: \create 15 3
+Socket 8 said: \challenge vader
+Socket 10 said: \accept diogom93
+Socket 8 said: \start
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Reading from socket 10
+Socket 10 said: \login vader 123456
+Socket 8 said: \create 20 3
+Socket 8 said: \challenge vader
+Socket 10 said: \accept diogom93
+Socket 8 said: \start
+Socket 8 said: \answer d
+Socket 10 said: \answer b
+Socket 8 said: \answer b
+Socket 8 said: \c
+Socket 8 said: \answer c
+Socket 10 said: \answer b
+Closing socket 8
+Closing socket 10
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Reading from socket 10
+Socket 10 said: \login vader 123456
+Socket 8 said: \create 15 3
+Socket 8 said: \challenge vader
+Socket 10 said: \accept diogom93
+Socket 8 said: \start
+Socket 8 said: \answer c
+Socket 10 said: \answer d
+Socket 10 said: \answer c
+Socket 8 said: \answer c
+Socket 10 said: \answer c
+Reading from socket 8
+Socket 8 said: \login vader
+Socket 8 said: \login vader 123456
+Reading from socket 10
+Socket 10 said: \login luke_skyw
+Socket 10 said: \login luke_skyw 123456
+Socket 8 said: \create 20 5
+Socket 8 said: \challenge luke_skyw
+Socket 10 said: \accept vader
+Socket 8 said: \start
+Socket 8 said: \answer d
+Socket 10 said: \answer a
+Socket 8 said: \answer c
+Socket 8 said: \answer b
+Socket 10 said: \answer b
+Socket 10 said: \answer a
+Socket 8 said: \answer a
+Socket 8 said: \answer a
+Socket 10 said: \answer a
+Socket 8 said: \list
+Socket 8 said: \ranking
+Socket 8 said: \info vader
+Closing socket 8
+Closing socket 10
