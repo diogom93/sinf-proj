@@ -241,3 +241,34 @@ B - Smee
 C - Lakshmi
 D - Beru
 
+Timer: 20 Rounds: 3
+Player 8
+RouletteA - Right
+B - Right
+C - Right
+D - Right
+
+Who was the father of Luke Skywalker?A - Obi-Wan Kenobi
+B - Jar-Jar Binks
+C - Darth Vader
+D - Ben Skywalker
+
+Which is the best programming language?A - Java
+B - Python
+C - Assembly
+D - C
+
+Timer: 20 Rounds: 3
+Player 10
+Who said 'It's a trap?'A - Obi-Wan Kenobi
+B - Boba Fett
+C - Nien Nunb
+D - Admiral Ackbar
+
+Timer: 15 Rounds: 3
+Player 8
+Which was Palpatine's homeworld?A - Dathomir
+B - Coruscant
+C - Tatooine
+D - Naboo
+

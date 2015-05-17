@@ -330,3 +330,43 @@ Socket 8 said: \ranking
 Socket 8 said: \info vader
 Closing socket 8
 Closing socket 10
+Reading from socket 8
+Socket 8 said: \login diogom93 123456
+Reading from socket 10
+Socket 10 said: \login vader 123456
+Socket 8 said: \create 20 3
+Socket 8 said: \challenge vader
+Socket 10 said: \accept diogom93 
+Socket 8 said: \start
+Socket 8 said: \ask
+Socket 8 said: \ask
+Socket 8 said: \answer C
+Socket 8 said: \ask
+Socket 10 said: \ask
+Socket 10 said: \ask
+Closing socket 8
+Closing socket 10
+Reading from socket 8
+Reading from socket 10
+Socket 10 said: \login vader
+Socket 10 said: \login vader 123456
+Socket 10 said: \create 220 3
+Socket 10 said: \create 20 3
+Socket 8 said: \login diogom93 123456
+Socket 10 said: \challenge diogom93
+Socket 8 said: \accept vader
+Socket 10 said: \start
+Socket 10 said: \ask
+Socket 10 said: \ask
+Socket 10 said: \ask
+Closing socket 8
+Closing socket 10
+Reading from socket 8
+Reading from socket 10
+Socket 10 said: \login vader 123456
+Socket 8 said: \login diogom93 123456
+Socket 8 said: \create 15 3
+Socket 8 said: \challenge vader
+Socket 10 said: \accept diogom93
+Socket 8 said: \start
+Socket 8 said: \ask
