@@ -68,7 +68,7 @@ void *game_engine(void *socketfd) {
 			write_to_socket(play_socks[k], db_buff.str()); 
 		}
 		
-		game_file << db_buff.str();
+		game_file << db_buff.str() << endl;
 		
 		vector<string> shuffled_ans;
 		db_buff.str("");
@@ -119,6 +119,7 @@ void *game_engine(void *socketfd) {
 				query.str("");
 				query << "INSERT INTO plays VALUES ('" << usernames[play_socks[k]] << "', " << rid << ", NULL, NULL)";
 				executeSQL(query.str());
+				write_to_socket(play_socks[k], "Wrong!");
 			} else {
 				string answer = PQgetvalue(res, 0, 0);
 				query.str("");

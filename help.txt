@@ -7,12 +7,12 @@ Commands:
 \question <question>|<correct>|<wrong1>|<wrong2>|<wrong3> - Creates question and the given choices
 \create <period> <questions> - Creates a game with <period> seconds rounds and <questions> rounds
 \challenge <username> - Challenges a user to a game you created
-\accept <username> - Accepts challange made by a user
+\accept <username> - Accepts challenge made by a user
 \decline <username> - Decline challenge made by a user
 \start - Start a game you created
 
 \answer <alternative> - Selects answer to the question
-\ask - Ask the users for their answers
+\ask - Shows how many users have chosen each option
 \cut - Reduces number of alternatives
 
 \say <username>|<message> - Sends message to user. If no username is specified, the message is sent to all online users

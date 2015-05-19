@@ -171,7 +171,7 @@ bool check_command(int socketfd, const string &s) {
 					if (n_questions < 1 || n_questions > 15) {
 						write_to_socket(socketfd, "Number of rounds must be between 1 and 15.");
 					} else { 
-						PGresult* res = executeSQL("SELECT * FROM games WHERE uid = '" + usernames[socketfd] + "' AND state = 'IDLE' OR STATE = 'ONGOING'");
+						PGresult* res = executeSQL("SELECT * FROM games WHERE uid = '" + usernames[socketfd] + "' AND (state = 'IDLE' OR STATE = 'ONGOING')");
 						
 						if (PQntuples(res) == 0) {
 							executeSQL("INSERT INTO games VALUES (DEFAULT, 'IDLE', " + c_args[1] + ", " + c_args[0] + ", '" + usernames[socketfd] + "')");
